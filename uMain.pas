@@ -37,6 +37,8 @@ type
         Timer1: TTimer;
         lbl_Subtitle: TLabel;
         Timer_Subtitle: TTimer;
+    btnUp: TButton;
+    btnDown: TButton;
         procedure FormCreate(Sender: TObject);
         procedure FormDestroy(Sender: TObject);
         procedure btnOpenClick(Sender: TObject);
@@ -48,6 +50,8 @@ type
         procedure Timer1Timer(Sender: TObject);
         procedure Timer_SubtitleTimer(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure btnDownClick(Sender: TObject);
+    procedure btnUpClick(Sender: TObject);
     private
         { Private declarations }
         { DShow 변수 }
@@ -60,6 +64,9 @@ type
         AvailableDS: Boolean;
         MediaLength: Double;
         LockTrack: Boolean;
+        BasicAudio      : IBasicAudio; // Volume/Balance control.
+
+        CurVol   : Integer;
 
         // 서브 클래싱용
         VideoRenderOrgMethod: TWndMethod;
@@ -67,6 +74,9 @@ type
 
         Function SetupDs: Boolean;
         Function ShutDownDs: Boolean;
+
+        procedure SetVolume(Value : Integer);
+        Function  GetVolume:Integer;
     public
         { Public declarations }
     end;
@@ -110,6 +120,24 @@ begin
     paScreen.WindowProc := VideoRenderWndProc;
 end;
 
+function TfrmMain.GetVolume: Integer;
+var
+    Vol : Integer;
+begin
+    // 볼륨 계산 0 은 최대 -10,000은 무음
+    BasicAudio.get_Volume(Vol);
+    Result := 100 - (Vol * -1);
+end;
+
+procedure TfrmMain.SetVolume(Value: Integer);
+var
+    Vol : Integer;
+begin
+    // 볼륨 계산 0 은 최대 -10,000은 무음
+    Vol := (100 - Value) * -100;
+    BasicAudio.put_Volume(Vol);
+end;
+
 function TfrmMain.SetupDs: Boolean;
 begin
     // DShow 를 초기화함
@@ -126,10 +154,11 @@ begin
     // 동영상에 필요한 객체 생성
     if Failed(FilterGraph.QueryInterface(IID_IMediaSeeking, MediaSeeking)) then
         Exit;
-    if Failed(FilterGraph.QueryInterface(IID_IMediaPosition, MediaPosition))
-    then
+    if Failed(FilterGraph.QueryInterface(IID_IMediaPosition, MediaPosition)) then
         Exit;
     if Failed(FilterGraph.QueryInterface(IID_IMediaEventEx, MediaEvent)) then
+        Exit;
+    if Failed(FilterGraph.QueryInterface(IID_IBasicAudio, BasicAudio)) then
         Exit;
 
     AvailableDS := true;
@@ -156,6 +185,7 @@ begin
     MediaSeeking := nil;
     MediaPosition := nil;
     MediaEvent := nil;
+    BasicAudio := nil;
     FilterGraph := nil;
 
     Result := true;
@@ -221,7 +251,9 @@ begin
             end;
         WM_LBUTTONDOWN:
             begin
-
+                // 재생중 화면 드래그로 인한 폼 이동
+                ReleaseCapture;
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             end;
         WM_LBUTTONDBLCLK:
             begin
@@ -238,6 +270,14 @@ begin
     else
         VideoRenderOrgMethod(Msg);
     end;
+end;
+
+procedure TfrmMain.btnDownClick(Sender: TObject);
+begin
+    // 소리줄임
+    if CurVol >= 5 then
+	    CurVol := CurVol - 5;
+    SetVolume(CurVol);
 end;
 
 procedure TfrmMain.btnOpenClick(Sender: TObject);
@@ -297,6 +337,8 @@ begin
                     // 재생
                     MediaControl.Run;
 
+                    CurVol := GetVolume;
+
                     if Assigned(SmSAMI) then
                     begin
                         SmSAMI.Run;
@@ -328,6 +370,14 @@ begin
 
     if Assigned(SmSAMI) then
         SmSAMI.Pause;
+end;
+
+procedure TfrmMain.btnUpClick(Sender: TObject);
+begin
+    // 소리키움
+    if CurVol <= 95 then
+	    CurVol := CurVol + 5;
+    SetVolume(CurVol);
 end;
 
 end.

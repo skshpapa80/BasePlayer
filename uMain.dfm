@@ -45,6 +45,9 @@ object frmMain: TfrmMain
     Height = 41
     Align = alBottom
     TabOrder = 1
+    DesignSize = (
+      721
+      41)
     object btnOpen: TButton
       Left = 6
       Top = 3
@@ -73,12 +76,31 @@ object frmMain: TfrmMain
       OnClick = btnStopClick
     end
     object TrackBar1: TTrackBar
-      Left = 183
+      Left = 288
       Top = 6
-      Width = 530
+      Width = 425
       Height = 41
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 3
       OnChange = TrackBar1Change
+    end
+    object btnUp: TButton
+      Left = 177
+      Top = 3
+      Width = 57
+      Height = 33
+      Caption = 'Up'
+      TabOrder = 4
+      OnClick = btnUpClick
+    end
+    object btnDown: TButton
+      Left = 234
+      Top = 3
+      Width = 57
+      Height = 33
+      Caption = 'Down'
+      TabOrder = 5
+      OnClick = btnDownClick
     end
   end
   object paScreen: TPanel
@@ -90,6 +112,7 @@ object frmMain: TfrmMain
     Color = clBlack
     ParentBackground = False
     TabOrder = 0
+    ExplicitTop = 8
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
