@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899-12-30 00:00:00.000.347,D:\Project\연구개발\BasePlayer\uMain.pas=C:\Users\yhcho\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.347,D:\Project\연구개발\BasePlayer\uMain.dfm=C:\Users\yhcho\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.961,=D:\Project\연구개발\BasePlayer\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.819,D:\Project\연구개발\BasePlayer\Unit1.pas=D:\Project\연구개발\BasePlayer\uSAMI.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.131,C:\Users\yhcho\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Project\연구개발\BasePlayer\BasePlayer.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.347,C:\Users\yhcho\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Project\연구개발\BasePlayer\uMain.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.347,C:\Users\yhcho\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Project\연구개발\BasePlayer\uMain.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.861,=C:\Users\yhcho\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.819,D:\Project\연구개발\BasePlayer\uSAMI.pas=D:\Project\연구개발\BasePlayer\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.131,D:\Project\연구개발\BasePlayer\BasePlayer.dproj=C:\Users\yhcho\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.961,=D:\Project\연구개발\BasePlayer\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>
