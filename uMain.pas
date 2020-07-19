@@ -2,7 +2,7 @@
 // 프로그래명 : DirectShow 기반으로한 동영상 플레이어
 // 작성일 : 2015-11-11
 // 수정일 : 2017-04-26
-// 블로그 : http://www.skshpapa80.net
+// 블로그 : https://skshpapa80.tistory.com/
 //
 // Delphi XE 기반에서 작성되었으며 DirectShow9을 사용하여
 // 동영상을 재생시키는 간단한 소스 입니다.
@@ -37,8 +37,8 @@ type
         Timer1: TTimer;
         lbl_Subtitle: TLabel;
         Timer_Subtitle: TTimer;
-    btnUp: TButton;
-    btnDown: TButton;
+        btnUp: TButton;
+        btnDown: TButton;
         procedure FormCreate(Sender: TObject);
         procedure FormDestroy(Sender: TObject);
         procedure btnOpenClick(Sender: TObject);
@@ -49,9 +49,9 @@ type
         procedure TrackBar1Change(Sender: TObject);
         procedure Timer1Timer(Sender: TObject);
         procedure Timer_SubtitleTimer(Sender: TObject);
-    procedure FormResize(Sender: TObject);
-    procedure btnDownClick(Sender: TObject);
-    procedure btnUpClick(Sender: TObject);
+        procedure FormResize(Sender: TObject);
+        procedure btnDownClick(Sender: TObject);
+        procedure btnUpClick(Sender: TObject);
     private
         { Private declarations }
         { DShow 변수 }
@@ -294,6 +294,8 @@ begin
             if Execute then
             begin
 
+                Caption := 'Base Player ' + FileName;
+
                 StringToWideChar(FileName, WFileName, 255);
                 PFileName := @WFileName[0];
 
@@ -344,6 +346,13 @@ begin
                         SmSAMI.Run;
                         Timer_Subtitle.Enabled := true;
                     end;
+                end
+                else
+                begin
+                    Caption := 'Base Player';
+                    // Render Fail
+                    // 코덱이 필요함
+                    ShowMessage('Render Fail!');
                 end;
 
             end;

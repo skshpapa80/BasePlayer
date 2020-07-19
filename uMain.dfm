@@ -94,8 +94,8 @@ object frmMain: TfrmMain
       OnClick = btnUpClick
     end
     object btnDown: TButton
-      Left = 234
-      Top = 3
+      Left = 240
+      Top = 6
       Width = 57
       Height = 33
       Caption = 'Down'
@@ -112,7 +112,6 @@ object frmMain: TfrmMain
     Color = clBlack
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = 8
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
