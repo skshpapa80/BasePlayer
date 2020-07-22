@@ -21,7 +21,7 @@ uses
     Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls,
     Vcl.ExtCtrls, uSAMI,
     {DirectShow 헤더와 ActiveX 헤더 추가}
-    Winapi.ActiveX, Winapi.DirectShow9, Winapi.DirectDraw;
+    Winapi.ActiveX, Winapi.DirectShow9, Winapi.DirectDraw, Vcl.Menus;
 
 const
     WM_GRAPHEVENT = WM_APP + 1;
@@ -39,6 +39,8 @@ type
         Timer_Subtitle: TTimer;
         btnUp: TButton;
         btnDown: TButton;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
         procedure FormCreate(Sender: TObject);
         procedure FormDestroy(Sender: TObject);
         procedure btnOpenClick(Sender: TObject);
@@ -52,6 +54,7 @@ type
         procedure FormResize(Sender: TObject);
         procedure btnDownClick(Sender: TObject);
         procedure btnUpClick(Sender: TObject);
+    procedure N1Click(Sender: TObject);
     private
         { Private declarations }
         { DShow 변수 }
@@ -127,6 +130,29 @@ begin
     // 볼륨 계산 0 은 최대 -10,000은 무음
     BasicAudio.get_Volume(Vol);
     Result := 100 - (Vol * -1);
+end;
+
+procedure TfrmMain.N1Click(Sender: TObject);
+var
+    ScreenState : LongBool;
+begin
+    if AvailableDS then begin
+	    VideoWindow.get_FullScreenMode(ScreenState);
+	    if ScreenState then begin
+		    VideoWindow.put_WindowStyle(WS_CHILD or WS_CLIPSIBLINGS);
+		    VideoWindow.put_WindowStyleEx(0);
+		    VideoWindow.put_FullScreenMode(False);
+		    VideoWindow.SetWindowPosition(0,0,paScreen.Width,paScreen.Height);
+            N1.Checked := false;
+	    end
+        else begin
+		    VideoWindow.put_WindowStyle(not(WS_BORDER or WS_CAPTION or WS_THICKFRAME));
+		    VideoWindow.put_WindowStyleEx(not(WS_EX_CLIENTEDGE or WS_EX_STATICEDGE or WS_EX_WINDOWEDGE or WS_EX_DLGMODALFRAME) or WS_EX_TOPMOST);
+		    VideoWindow.put_FullScreenMode(True);
+		    VideoWindow.SetWindowPosition(0,0,Screen.Width,Screen.Height);
+            N1.Checked := true;
+	    end;
+    end;
 end;
 
 procedure TfrmMain.SetVolume(Value: Integer);
@@ -257,7 +283,7 @@ begin
             end;
         WM_LBUTTONDBLCLK:
             begin
-
+                PopupMenu1.Popup(Mouse.CursorPos.x,Mouse.CursorPos.y);
             end;
         WM_RBUTTONDOWN:
             begin

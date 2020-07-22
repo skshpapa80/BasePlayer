@@ -94,8 +94,8 @@ object frmMain: TfrmMain
       OnClick = btnUpClick
     end
     object btnDown: TButton
-      Left = 240
-      Top = 6
+      Left = 235
+      Top = 3
       Width = 57
       Height = 33
       Caption = 'Down'
@@ -111,6 +111,7 @@ object frmMain: TfrmMain
     Align = alClient
     Color = clBlack
     ParentBackground = False
+    PopupMenu = PopupMenu1
     TabOrder = 0
   end
   object Timer1: TTimer
@@ -124,5 +125,14 @@ object frmMain: TfrmMain
     OnTimer = Timer_SubtitleTimer
     Left = 392
     Top = 232
+  end
+  object PopupMenu1: TPopupMenu
+    AutoHotkeys = maManual
+    Left = 432
+    Top = 304
+    object N1: TMenuItem
+      Caption = #51204#52404#54868#47732
+      OnClick = N1Click
+    end
   end
 end
