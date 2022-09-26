@@ -8,4 +8,5 @@ DirectShow 강좌
 https://skshpapa80.github.io/2013/03/20/Delphi-DirectShow/
 
 DirectShow 동영상 재생기 자막 기능 추가
-https://blog.naver.com/skshpapa80/222396878727
+
+https://skshpapa80.github.io/2017/05/01/Delphi-DirectShow-Smi/
