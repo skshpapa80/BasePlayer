@@ -9,4 +9,4 @@ https://www.raycho12.pe.kr/2017/04/17/delphi-directshow-lecture/
 
 DirectShow 동영상 재생기 자막 기능 추가
 
-https://blog.naver.com/skshpapa80/223354114334
+https://www.raycho12.pe.kr/2018/05/27/source-directshow-smi-subtitle/
