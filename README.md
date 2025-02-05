@@ -10,4 +10,4 @@ https://blog.naver.com/skshpapa80/223747988736
 
 DirectShow 동영상 재생기 자막 기능 추가
 
-
+https://blog.naver.com/skshpapa80/223748444316
