@@ -10,4 +10,4 @@ DirectShow 강좌
 
 DirectShow 동영상 재생기 자막 기능 추가
 - 위 강좌로 작성된 프로그램에 SMI 확장자인 자막파일을 읽어오는 소스 추가 
-- https://blog.naver.com/skshpapa80/223748444316
+- https://m.blog.naver.com/skshpapa80/223748444316
