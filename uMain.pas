@@ -2,7 +2,7 @@
 // 프로그래명 : DirectShow 기반으로한 동영상 플레이어
 // 작성일 : 2015-11-11
 // 수정일 : 2017-04-26
-// 블로그 : https://skshpapa80.tistory.com/
+// 블로그 : https://skshpapa80.blogspot.com/
 //
 // Delphi XE 기반에서 작성되었으며 DirectShow9을 사용하여
 // 동영상을 재생시키는 간단한 소스 입니다.
@@ -137,10 +137,10 @@ var
     ScreenState : LongBool;
 begin
     if AvailableDS then begin
-	    VideoWindow.get_FullScreenMode(ScreenState);
-	    if ScreenState then begin
-		    VideoWindow.put_WindowStyle(WS_CHILD or WS_CLIPSIBLINGS);
-		    VideoWindow.put_WindowStyleEx(0);
+        VideoWindow.get_FullScreenMode(ScreenState);
+        if ScreenState then begin
+            VideoWindow.put_WindowStyle(WS_CHILD or WS_CLIPSIBLINGS);
+            VideoWindow.put_WindowStyleEx(0);
 		    VideoWindow.put_FullScreenMode(False);
 		    VideoWindow.SetWindowPosition(0,0,paScreen.Width,paScreen.Height);
             N1.Checked := false;
